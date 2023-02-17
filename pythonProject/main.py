@@ -52,6 +52,7 @@ def saveBoundingBoxes (csv_lines, output_path):
         with open(txt_name, 'w') as file:
             image_name1 = txt_name.replace(".txt", ".png")
             image_name = image_name1.replace("txts", "images")
+            print (image_name)
             #converto il nome del file nel nome dell immagine
             img = cv2.imread(image_name, 4)
             H, W, C = img.shape
