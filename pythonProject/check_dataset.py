@@ -1,3 +1,12 @@
+import os
+import csv
+import cv2
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import numpy as np
+import pandas
+
+
 def Extract_boxes(path_txt, W, H):
     with open(path_txt) as file_in:
         lines = []
@@ -34,25 +43,26 @@ def img2ImgRectangle (folderimages_path, outputimagesRect_path, foldertxt_path):
         #plt.imshow(img)
         #plt.show()
 
-        def DrawImage(image, boxList):
-            # im = image.copy
-            for box in boxList:
-                print(box)
-                xmin = box[1]
-                ymin = box[2]
-                w = box[3]
-                h = box[4]
+def DrawImage(image, boxList):
+        # im = image.copy
+        for box in boxList:
+            print(box)
+            xmin = box[1]
+            ymin = box[2]
+            w = box[3]
+            h = box[4]
 
-                H, W, C = image.shape
-                xmin = int(xmin * W)
-                ymin = int(ymin * H)
-                xmax = int(xmin + w * W)
-                ymax = int(ymin + h * H)
-                print(xmin, ymin, xmax, ymax, W, H)
+            H, W, C = image.shape
+            xmin = int(xmin * W)
+            ymin = int(ymin * H)
+            xmax = int(xmin + w * W)
+            ymax = int(ymin + h * H)
+            print(xmin, ymin, xmax, ymax, W, H)
 
-                color = (255, 0, 0)
-                thickness = 2
-                image = cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color, thickness)
+            color = (255, 0, 0)
+            thickness = 2
+            image = cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color, thickness)
 
-            return image
+        return image
+
 

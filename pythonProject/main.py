@@ -1,6 +1,5 @@
 import os
 import csv
-#from datatime import timedelta
 import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
