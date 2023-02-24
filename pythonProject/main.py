@@ -1,3 +1,8 @@
+#Every line of the .csv file represents all the objects inside the specific frame we are considering
+#So with 900 rows (excluding the first 4) in the .csv we got the coordinates of 900 different frame images
+#In this program to avoid to run out of system memory I choose to consider one frame every 30 starting from the 30th
+# itself
+
 import os
 import csv
 import cv2
@@ -62,11 +67,12 @@ def saveBoundingBoxes (csv_lines, output_path):
             #build up the pngs output path from the txts path
             image_name1 = txt_path.replace(".txt", ".png")
             image_path = image_name1.replace("txts", "images")
+            #assign the reading of the image selected and extract the resolution value (H, W, C in following this order)
             img = cv2.imread(image_path, 4)
             H, W, _ = img.shape
 
             for i in range (0, len(bounding_boxes), 4):
-                #check if the specific element "i" inside the bounding_boxes list is empty
+                #check if the specific element "i" inside the bounding_boxes list is empty (so not detected in the frame)
                 if bounding_boxes[i] == "": continue
                 bb_height = float(float(bounding_boxes[i])/H)
                 bb_width = float(float(bounding_boxes[i+3])/W)
